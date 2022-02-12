@@ -131,7 +131,89 @@ body {
 /* Strategic Business Objectives component */
 .stratObjContainer {
     height: 400px;
-    background-color: blue;
-    position: relative;
-    
+    background-color: #ffff;
+    padding-top: 20px;
+}
+
+.formContainer {
+  width: 90%;
+  margin: auto;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 12px;
+
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
+}
+
+.form-right {
+  display: flex;
+  flex-direction: row;
+  gap: 130px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.form-left {
+  margin-left: 30px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+}
+
+label {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #27285C;
+  margin-bottom: 10px;
+}
+
+.add-measure {
+  font-size: .75rem;
+}
+
+.add-measure-button {
+  border-radius: 50%;
+  border-style: none;
+  background-color: #27285C;
+  color: #ffff;
+  font-size: .5rem;
+  font-weight: 600;
+  height: 15px;
+  width: 15px;
+}
+
+input {
+  line-height: 2.5rem;
+  border-radius: 6px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #a9a9a9;
+  margin-bottom: 10px;
+}
+
+.form-input {
+  display: flex;
+  text-align: left;
+  flex-direction: column;
+}
+
+[type="date"] {
+  width: 190%;
+}
+
+.formButton {
+  font-size: 1rem;
+  font-weight: 200;
+
+  border-radius: 6px;
+  border-style: none;
+  padding: 10px 20px;
+  margin-top: 10px;
+
+  background-color:	#27285C;
+  color: #ffff;
+  float: left;
+
 }

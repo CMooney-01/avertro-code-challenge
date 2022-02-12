@@ -7,6 +7,7 @@ function ReportsDashboard() {
 
   const [ state, setState ] = useState('default');
 
+
   return(
     <div className="reportsDash">
       <div>
@@ -16,8 +17,8 @@ function ReportsDashboard() {
 
       <div className="subDash">
         <div className="buttonContainer">
-          <button className="dashButton" onClick={ () => setState('mission') }>Mission & Vision</button>
-          <button className="dashButton" onClick={ () => setState('objectives') }>Strategic Business Objectives</button>
+          <button id="1" className={`dashButton ${'mission' || 'default' ? "active" : ""}`} onClick={ () => setState('mission') }>Mission & Vision</button>
+          <button id="2" className={`dashButton ${'objectives' ? "active" : ""}`} onClick={ () => setState('objectives') }>Strategic Business Objectives</button>
         </div>
 
 
@@ -42,5 +43,4 @@ function ReportsDashboard() {
 
 export default ReportsDashboard;
 
-// Clicking button should switch which component is being shown to the user
-// Can use .hidden class to show/hide?
+// Need to figure out why button class active is permanently on
