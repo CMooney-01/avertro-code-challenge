@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import StrategicObjective from "../components/StrategicObjective.js";
 import MissionVision from "../components/MissionVision.js";
 
 
 function ReportsDashboard() {
+
+  const [ state, setState ] = useState('default');
 
   return(
     <div className="reportsDash">
@@ -14,14 +16,22 @@ function ReportsDashboard() {
 
       <div className="subDash">
         <div className="buttonContainer">
-          <button className="dashButton">Mission & Vision</button>
-          <button className="dashButton">Strategic Business Objectives</button>
+          <button className="dashButton" onClick={ () => setState('mission') }>Mission & Vision</button>
+          <button className="dashButton" onClick={ () => setState('objectives') }>Strategic Business Objectives</button>
         </div>
 
 
         <div className="activeDash">
-          <MissionVision />
-          <StrategicObjective />
+          { state === 'default'
+            && (<MissionVision />)
+          }
+          { state === 'mission'
+            && (<MissionVision />)
+          }
+          { state === 'objectives'
+            && (<StrategicObjective />)
+          }
+
         </div>
       </div>
 
