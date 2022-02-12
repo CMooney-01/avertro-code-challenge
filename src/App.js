@@ -1,14 +1,15 @@
 
 import './App.css';
+import Navbar from "./components/Navbar.js";
+import Branding from "./components/Branding.js";
+import Reports from "./pages/Reports.js";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <p>
-          Avertro coding challenge... commence!
-        </p>
-      </header>
+      <Navbar />
+      <Branding />
+      <Reports />
     </div>
   );
 }

@@ -1,38 +1,80 @@
+body {
+  background-color: #ffff;
+}
+
 .App {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Branding component */
+.branding {
+  width: 100%;
+  /* using border to visualise div */
+  border-style: solid;
+  border-width: 2px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.avertro-logo {
+  height: 6vh;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Navbar component */
+.navbar {
+  /* using border to visualise div */
+  border-style: solid;
+  border-width: 2px;
+
+  height: 100%;
+  width: 6%;
+
+  position: fixed;
+  z-index: 1;
+  padding-top: 6vh;
+
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.navbar, a {
+  text-decoration: none;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.nav-item {
+  margin-top: 20px;
+  height: 8%;
+
+  font-size: .75rem;
+}
+
+/* Security-Strategy page  */
+.securityStrategy {
+  width: 87%;
+  float: right;
+  margin-right: 4%;
+
+  /* using border to visualise div */
+  border-style: solid;
+  border-color: orange;
+  border-width: 2px;
+}
+
+.pageHeading {
+  text-align: left;
+
+  margin-top: 2%;
+  font-size: 1.25rem;
+}
+
+.horizontalRule {
+  border: none;
+  height: 1px;
+  background-color: gray;
+}
+
+.reportsContainer {
+  /* using border to visualise div */
+  border-style: solid;
+  border-color: blue;
+  border-width: 2px;
 }
