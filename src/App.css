@@ -1,5 +1,5 @@
 body {
-  background-color: #ffff;
+  background-color: #dcdcdc;
 }
 
 .App {
@@ -9,6 +9,7 @@ body {
 /* Branding component */
 .branding {
   width: 100%;
+  background-color: #ffff;
   /* using border to visualise div */
   border-style: solid;
   border-width: 2px;
@@ -24,12 +25,13 @@ body {
   border-style: solid;
   border-width: 2px;
 
-  height: 100%;
+  background-color: #ffff;
+  height: 92vh;
   width: 6%;
 
   position: fixed;
   z-index: 1;
-  padding-top: 6vh;
+  margin-top: 6.6vh;
 
   display: flex;
   flex-direction: column;
@@ -47,8 +49,9 @@ body {
   font-size: .75rem;
 }
 
-/* Security-Strategy page  */
-.securityStrategy {
+/* Reports page  */
+
+.reportsPage {
   width: 87%;
   float: right;
   margin-right: 4%;
@@ -57,6 +60,8 @@ body {
   border-style: solid;
   border-color: orange;
   border-width: 2px;
+
+  background-color: #dcdcdc;
 }
 
 .pageHeading {
@@ -70,6 +75,7 @@ body {
   border: none;
   height: 1px;
   background-color: gray;
+  margin-bottom: 2%;
 }
 
 .reportsContainer {
@@ -77,4 +83,48 @@ body {
   border-style: solid;
   border-color: blue;
   border-width: 2px;
+}
+
+/* ReportsDashboard  */
+.buttonContainer {
+  display: flex;
+  flex-direction: row;
+}
+.dashButton {
+  font-size: 1.25rem;
+  font-weight: bold;
+
+  border-radius: 15px;
+  border-style: none;
+  padding:20px;
+  padding-bottom: 30px;
+
+  background-color:	#a9a9a9;
+  color: #27285C;
+}
+
+.active {
+  background-color: #ffff;
+}
+
+.activeDash {
+  height: 70vh;
+  margin-top: -1%;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  background-color: purple;
+}
+
+/* Mission & Vision component  */
+.missionVisionContainer {
+  height: 400px;
+  background-color: red;
+}
+
+/* Strategic Business Objectives component */
+.stratObjContainer {
+    height: 400px;
+    background-color: blue;
+    position: relative;
+    bottom: 400px;
 }

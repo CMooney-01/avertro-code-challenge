@@ -3,8 +3,12 @@ import React from 'react';
 function StrategicObjective() {
 
   return(
-    <div>
-      This will be the strategic objectives
+    <div className="stratObjContainer">
+
+      <div>
+        This will be where you set the strategic objectives
+      </div>
+
     </div>
   );
 };

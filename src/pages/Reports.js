@@ -1,24 +1,18 @@
 import React from 'react';
 import ReportsDashboard from "../components/ReportsDashboard.js";
 
-function SecurityStrategy() {
+function Reports() {
 
 
   return (
-    <div className="securityStrategy">
+      <div className="reportsPage">
 
-      <div>
-        <p className="pageHeading">Set Security Strategy</p>
-        <hr className="horizontalRule" />
+        <div className="reportsContainer">
+          <ReportsDashboard />
+        </div>
+
       </div>
-
-      <div className="reportsContainer">
-        <ReportsDashboard />
-      </div>
-
-    </div>
-
   );
 };
 
-export default SecurityStrategy;
+export default Reports;
