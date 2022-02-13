@@ -17,8 +17,8 @@ function ReportsDashboard() {
 
       <div className="subDash">
         <div className="buttonContainer">
-          <button id="1" className={`dashButton ${'mission' || 'default' ? "active" : ""}`} onClick={ () => setState('mission') }>Mission & Vision</button>
-          <button id="2" className={`dashButton ${'objectives' ? "active" : ""}`} onClick={ () => setState('objectives') }>Strategic Business Objectives</button>
+          <button id="1" className={`dashButton ${ state==='mission' ? "active" : ""}`} onClick={ () => setState('mission') }>Mission & Vision</button>
+          <button id="2" className={`dashButton ${ state==='objectives' ? "active" : ""}`} onClick={ () => setState('objectives') }>Strategic Business Objectives</button>
         </div>
 
 

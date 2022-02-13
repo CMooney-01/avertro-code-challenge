@@ -171,6 +171,8 @@ label {
 
 .add-measure {
   font-size: .75rem;
+  float: right;
+  margin-top: 12px;
 }
 
 .add-measure-button {
@@ -178,10 +180,11 @@ label {
   border-style: none;
   background-color: #27285C;
   color: #ffff;
-  font-size: .5rem;
-  font-weight: 600;
-  height: 15px;
-  width: 15px;
+  font-size: .8rem;
+  font-weight: 700;
+  height: 19px;
+  width: 19px;
+  cursor: pointer;
 }
 
 input {
@@ -203,7 +206,7 @@ input {
   width: 190%;
 }
 
-.formButton {
+.formUpdateButton {
   font-size: 1rem;
   font-weight: 200;
 
@@ -216,4 +219,5 @@ input {
   color: #ffff;
   float: left;
 
+  cursor: pointer;
 }
