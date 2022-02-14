@@ -130,9 +130,10 @@ body {
 
 /* Strategic Business Objectives component */
 .stratObjContainer {
-    height: 400px;
+    height: auto;
     background-color: #ffff;
     padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 .formContainer {
@@ -219,5 +220,21 @@ input {
   color: #ffff;
   float: left;
 
+  cursor: pointer;
+}
+
+.add-objective-button {
+  font-size: 1rem;
+  font-weight: 200;
+
+  border-radius: 6px;
+  border-style: none;
+  padding: 10px 20px;
+  margin-top: 10px;
+
+  background-color:	#27285C;
+  color: #ffff;
+  float: right;
+  margin-right: 5%;
   cursor: pointer;
 }
