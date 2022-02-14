@@ -32,7 +32,9 @@ function StrategicObjective() {
     {
       type:"text",
       id:1,
-      value:""
+      value:"",
+      size: "90",
+      name:"keyMeasures1"
     }
   ];
 
@@ -41,31 +43,42 @@ function StrategicObjective() {
   const addMeasure = e => {
     e.preventDefault();
 
-    count = keyMeasures.length;
-    setArr(s => {
-      return [
-        ...s,
-        {
-          type:"text",
-          id: count+1,
-          size: "90",
-          value: ""
-        }
-      ];
-    });
-  };
+    let count = keyMeasures.length;
 
-  const handleChange = e => {
-    e.preventDefault();
+    let newMeasure = {
+              type:"text",
+              id: count+1,
+              size: "90",
+              value: "",
+              name:(`keyMeasures${count+1}`)
+            };
 
-    const index = e.target.id;
-    setArr(s => {
-      const newArr = s.slice();
-      newArr[index].value = e.target.value;
+    //Not sure why it isn't counting first render in length, figure out if I have time
+    if (arr.length <= 2) {
+      setArr(arr => [...arr,
+        newMeasure
+      ]);
+    } else {
+      alert("Cannot add more than three key measures.")
+    }
 
-      return newArr;
-    });
-  };
+
+ };
+
+
+
+  // Not sure if i need this - can just update state of key measures when hitting update?
+  // const handleChange = e => {
+  //   e.preventDefault();
+  //
+  //   const index = e.target.id;
+  //   setArr(s => {
+  //     const newArr = s.slice();
+  //     newArr[index].value = e.target.value;
+  //
+  //     return newArr;
+  //   });
+  // };
 
   return(
     <div className="stratObjContainer">
@@ -84,13 +97,12 @@ function StrategicObjective() {
                   <label className="add-measure" htmlFor="keyMeasures">Add additional key measure
                     <button className="add-measure-button" onClick={addMeasure}>+</button></label>
                 </div>
-                {arr.map((item, i) => {
+                {arr.map(item => {
                   return (
                     <input
-                      onChange={handleChange}
                       type={item.type}
                       id={item.id}
-                      name="keyMeasures"
+                      name={item.name}
                       size={item.size}
                     />
                   );
