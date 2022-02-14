@@ -2,11 +2,10 @@ import React, { useState } from 'react';
 
 function ObjectiveComponent() {
 
-  let objCount = 1;
   //getting todays date to set default start date
   let today = new Date();
   //formatting start date
-  // Spent about 2 hours figuring out that setting locale to en-AU screwed up the defaultValue rendering. Fun times :>
+  //Spent about 2 hours figuring out that setting locale to en-AU screwed up the defaultValue rendering. Fun times :>
   let defaultStartDate = today.toLocaleDateString('en-CA');
   //formatting end date to be 1 month later by default
   let year = today.getFullYear();
@@ -43,11 +42,12 @@ function ObjectiveComponent() {
   const addMeasure = e => {
     e.preventDefault();
 
-    let count = keyMeasures.length;
+    let count = arr.length;
+    console.log(count);
 
     let newMeasure = {
               type:"text",
-              id: count+1,
+              id: (`keyMeasures${count+1}`),
               size: "90",
               value: "",
               name:(`keyMeasures${count+1}`)
@@ -63,18 +63,27 @@ function ObjectiveComponent() {
     }
   };
 
-  // Not sure if i need this - can just update state of key measures when hitting update?
-  // const handleChange = e => {
-  //   e.preventDefault();
-  //
-  //   const index = e.target.id;
-  //   setArr(s => {
-  //     const newArr = s.slice();
-  //     newArr[index].value = e.target.value;
-  //
-  //     return newArr;
-  //   });
-  // };
+  //Storing Objective, Key Measure and Date form data after hitting 'Update' button
+  const onUpdate = (e) => {
+    e.preventDefault();
+
+    let objective = document.querySelector('input[name="objective"]').value;
+    let measure1 = document.querySelector('input[name="keyMeasures1"]').value;
+    let measure2 = document.querySelector('input[name="keyMeasures2"]').value;
+    let measure3 = document.querySelector('input[name="keyMeasures3"]').value;
+    let start = document.querySelector('input[name="startDate"]').value;
+    let end = document.querySelector('input[name="endDate"]').value;
+
+    let objectiveData = { objective,
+                          measure1,
+                          measure2,
+                          measure3,
+                          start,
+                          end
+                        }
+
+    console.log(objectiveData);
+  }
 
   return(
     <div className="stratObjContainer">
@@ -83,7 +92,7 @@ function ObjectiveComponent() {
         <form className="formContainer">
           <div className="form-left">
               <div className="objective form-input">
-                <label htmlFor="objective">Objective {objCount}:</label>
+                <label htmlFor="objective">Objective:</label>
                 <input type="text" name="objective" size="90" />
               </div>
 
@@ -105,7 +114,7 @@ function ObjectiveComponent() {
                   })}
               </div>
 
-              <button className="formUpdateButton">Update</button>
+              <button className="formUpdateButton" onClick={onUpdate}>Update</button>
           </div>
 
           <div className="form-right">

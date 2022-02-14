@@ -4,7 +4,7 @@ import ObjectiveComponent from './ObjectiveComponent.js'
 function StrategicObjective() {
 
   //Creating default array to show on page load
-  let objectives = [ <ObjectiveComponent /> ];
+  let objectives = [ <ObjectiveComponent num="1"/> ];
   //Using state to maintain/store objectives
   const [ arr, setArr ] = useState(objectives);
   //Using state as counter for how many objectives to display
@@ -37,6 +37,7 @@ function StrategicObjective() {
         );
       })}
       <button className="add-objective-button" onClick={addObjective}>+<a> Add Objective</a></button>
+
     </div>
   );
 
