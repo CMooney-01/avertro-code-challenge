@@ -1,7 +1,7 @@
 import React from 'react';
 import ReportsDashboard from "../components/ReportsDashboard.js";
 
-function Reports() {
+function Dashboard() {
 
 
   return (
@@ -15,4 +15,4 @@ function Reports() {
   );
 };
 
-export default Reports;
+export default Dashboard;
