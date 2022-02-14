@@ -5,6 +5,7 @@ const functionTemplate = () => {}
 //BRUH. Spent 3? hours trying to why objectiveData was returning undefined and it was the fact that
 //I spelt it 'obejctiveData' rrrreeeeeeeeee
 const objectiveContext = {
+  objectiveIds: [],
   objectiveCount: 1,
   objectiveData: [{
     objectiveId: 1,
@@ -23,7 +24,7 @@ const ObjectiveContextProvider = ({children}) => {
   const [context, setContext ] = useState(objectiveContext)
 
   return (
-    <ObjectiveContext.Provider value={context}>
+    <ObjectiveContext.Provider value={[context, setContext]}>
       {children}
     </ObjectiveContext.Provider>
   );

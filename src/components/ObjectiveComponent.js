@@ -1,10 +1,11 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect, useRef } from 'react';
 import { ObjectiveContext, ObjectiveContextProvider } from "./ObjectiveContext.js"
 
 function ObjectiveComponent() {
 
-  const context = useContext(ObjectiveContext);
-  // console.log(context); - checking to see if context is getting through
+  const [context, setContext] = useContext(ObjectiveContext);
+  // console.log(context.objectiveCount);
+
   //getting todays date to set default start date
   let today = new Date();
   //formatting start date
@@ -33,7 +34,7 @@ function ObjectiveComponent() {
   const keyMeasures = [
     {
       type:"text",
-      id:1,
+      id:"keyMeasures1",
       value:"",
       size: "90",
       name:"keyMeasures1"
@@ -42,13 +43,11 @@ function ObjectiveComponent() {
 
   const [ arr, setArr ] = useState(keyMeasures);
 
-  // console.log(buttonName);
-
   const addMeasure = e => {
     e.preventDefault();
 
     let count = arr.length;
-    console.log(count);
+    // console.log(count);
 
     let newMeasure = {
               type:"text",
@@ -71,13 +70,15 @@ function ObjectiveComponent() {
   //Storing Objective, Key Measure and Date form data after hitting 'Update' button
 
   let data = [];
+  // console.log(context.objectiveData);
+  // const count = context.objectiveCount;
+  // console.log(count)
 
   const onUpdate = (e) => {
     e.preventDefault();
-
-    let index = data.length
-
-    if (e.target.classList.contains('clicked') == false) {
+    // const value = count.current;
+    //
+      let objectiveId = 123;
       let objective = document.querySelector('input[name="objective"]').value;
       let measure1 = document.querySelector('input[name="keyMeasures1"]').value;
       let measure2 = document.querySelector('input[name="keyMeasures2"]').value;
@@ -85,7 +86,8 @@ function ObjectiveComponent() {
       let start = document.querySelector('input[name="startDate"]').value;
       let end = document.querySelector('input[name="endDate"]').value;
 
-      let objectiveData = { objective,
+      let newObjectiveData = { objectiveId,
+                            objective,
                             measure1,
                             measure2,
                             measure3,
@@ -93,19 +95,17 @@ function ObjectiveComponent() {
                             end
                           }
 
-      data.push(objectiveData);
+      data.push(newObjectiveData);
 
-      e.target.classList.add('clicked');
-      console.log(data);
-    }
+      // count.current++
 
-
-
+      setContext({...context, objectiveData: data});
+      localStorage.setItem('objectiveData', JSON.stringify(context.objectiveData));
+      //
+      // console.log(data);
   }
 
-
   return(
-
     <div className="stratObjContainer">
 
       <div>
@@ -113,7 +113,7 @@ function ObjectiveComponent() {
           <div className="form-left">
               <div className="objective form-input">
                 <label htmlFor="objective">Objective {context.objectiveData[0].objectiveId}:</label>
-                <input type="text" name="objective" size="90" />
+                <input type="text" name="objective" id={context.objectiveData[0].objectiveId} size="90" />
               </div>
 
               <div className="key-measures form-input" id="keyMeasures">
@@ -134,7 +134,7 @@ function ObjectiveComponent() {
                   })}
               </div>
 
-              <button className="formUpdateButton" id={context.objectiveData[context.objectiveCount-1].objectiveId} onClick={onUpdate}>Update</button>
+              <button className="formUpdateButton" id={context.objectiveCount} onClick={onUpdate}>Update</button>
           </div>
 
           <div className="form-right">
@@ -156,6 +156,7 @@ function ObjectiveComponent() {
       </div>
 
     </div>
+
   );
 }
 

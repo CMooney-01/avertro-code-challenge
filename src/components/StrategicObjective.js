@@ -1,19 +1,36 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import ObjectiveComponent from "./ObjectiveComponent.js"
 import { ObjectiveContext, ObjectiveContextProvider } from "./ObjectiveContext.js"
 
 function StrategicObjective() {
 
 
-  const context = useContext(ObjectiveContext);
-  const [ nextStatus, setNextStatus ] = useState(context.objectiveCount)
-  console.log(context.objectiveCount);
-
+  const [context, setContext] = useContext(ObjectiveContext);
+  // console.log(context.objectiveCount);
 
   //Creating default array to show on page load
-  let objectives = [ <ObjectiveComponent /> ];
+  let objectives = [{
+    id: "objective1",
+    component: <ObjectiveComponent />
+  }];
   //Using state to maintain/store objectives
   const [ arr, setArr ] = useState(objectives);
+  let idArray = []
+  // console.log(arr)
+
+  function getIds(arr) {
+    for (let i=0; i<arr.length; i++) {
+      idArray.push(arr[i].id)
+    }
+    localStorage.setItem('objectiveIds', idArray)
+  }
+
+  getIds(arr)
+
+  useEffect(() => {
+    setContext({...context, objectiveIds: localStorage.getItem('objectiveIds')});
+  }, [])
+
   //Using state as counter for how many objectives to display
   const [ state, setState ] = useState(1);
 
@@ -23,12 +40,14 @@ function StrategicObjective() {
 
     setState(state+1);
 
-    let newObj = <ObjectiveComponent />;
+    setContext({...context, objectiveCount: state+1});
 
-    //Again, not sure why it isn't counting the first rendered component. Fix if time.
     if (arr.length <=2) {
+      let count = arr.length;
+
       setArr(arr => [...arr,
-      newObj
+      {id: (`objective${count+1}`),
+      component: <ObjectiveComponent />}
       ]);
 
     } else {
