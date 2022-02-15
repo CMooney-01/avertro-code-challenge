@@ -8,6 +8,7 @@ import StrategicObjective from "./components/StrategicObjective.js"
 import ObjectiveComponent from "./components/ObjectiveComponent.js"
 import { ObjectiveContext, ObjectiveContextProvider } from "./components/ObjectiveContext.js"
 
+
 class App extends Component {
 
   constructor(props) {

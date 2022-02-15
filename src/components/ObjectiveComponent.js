@@ -4,31 +4,48 @@ import { ObjectiveContext, ObjectiveContextProvider } from "./ObjectiveContext.j
 function ObjectiveComponent() {
 
   const [context, setContext] = useContext(ObjectiveContext);
-  // console.log(context.objectiveCount);
 
-  //getting todays date to set default start date
-  let today = new Date();
-  //formatting start date
-  //Spent about 2 hours figuring out that setting locale to en-AU screwed up the defaultValue rendering. Fun times :>
-  let defaultStartDate = today.toLocaleDateString('en-CA');
-  //formatting end date to be 1 month later by default
-  let year = today.getFullYear();
-  let month = `${today.getMonth() + 2}`.padStart(2, "0");
-  let day = `${today.getDate()}`.padStart(2, "0");
+  //Getting stored objective names from local storage and parsing back to object/array
+  useEffect(() => {
+    setContext({...context, objectiveIds: JSON.parse(localStorage.getItem('objectiveIds'))});
+  }, [])
 
-  let defaultEndDate = [year, month, day].join("-");
+  let storedIds = context.objectiveIds
 
-  //managing state for date settings
-  const [ startDate, setStartDate ] = useState(defaultStartDate);
-  const [ endDate, setEndDate ] = useState(defaultEndDate);
-
-  const onChangeStartDate = (event) => {
-    setStartDate(new Date(event.target.value))
+  let idArray = [];
+  //Recomposing stored objective ids into an array
+  function remakeArray(storedIds) {
+    for(let i=0; i<storedIds.length; i++) {
+      idArray.push(storedIds[i])
+    }
   }
+  remakeArray(storedIds)
 
-  const onChangeEndDate = (event) => {
-    setEndDate(new Date(event.target.value))
-  }
+
+
+  // //getting todays date to set default start date
+  // let today = new Date();
+  // //formatting start date
+  // //Spent about 2 hours figuring out that setting locale to en-AU screwed up the defaultValue rendering. Fun times :>
+  // let defaultStartDate = today.toLocaleDateString('en-CA');
+  // //formatting end date to be 1 month later by default
+  // let year = today.getFullYear();
+  // let month = `${today.getMonth() + 2}`.padStart(2, "0");
+  // let day = `${today.getDate()}`.padStart(2, "0");
+  //
+  // let defaultEndDate = [year, month, day].join("-");
+  //
+  // //managing state for date settings
+  // const [ startDate, setStartDate ] = useState(defaultStartDate);
+  // const [ endDate, setEndDate ] = useState(defaultEndDate);
+  //
+  // const onChangeStartDate = (event) => {
+  //   setStartDate(new Date(event.target.value))
+  // }
+  //
+  // const onChangeEndDate = (event) => {
+  //   setEndDate(new Date(event.target.value))
+  // }
 
   //Adding Key Measures and storing the user input
   const keyMeasures = [
@@ -68,17 +85,15 @@ function ObjectiveComponent() {
   };
 
   //Storing Objective, Key Measure and Date form data after hitting 'Update' button
-
   let data = [];
-  // console.log(context.objectiveData);
-  // const count = context.objectiveCount;
-  // console.log(count)
 
   const onUpdate = (e) => {
     e.preventDefault();
-    // const value = count.current;
-    //
-      let objectiveId = 123;
+
+    for(let i=0; i < idArray.length; i++) {
+
+      let objectiveId = idArray[i];
+
       let objective = document.querySelector('input[name="objective"]').value;
       let measure1 = document.querySelector('input[name="keyMeasures1"]').value;
       let measure2 = document.querySelector('input[name="keyMeasures2"]').value;
@@ -97,22 +112,20 @@ function ObjectiveComponent() {
 
       data.push(newObjectiveData);
 
-      // count.current++
-
       setContext({...context, objectiveData: data});
       localStorage.setItem('objectiveData', JSON.stringify(context.objectiveData));
-      //
-      // console.log(data);
+      alert("Data saved.")
+    }
   }
 
   return(
     <div className="stratObjContainer">
 
       <div>
-        <form className="formContainer">
+        <form className="formContainer" id={context.objectiveCount}>
           <div className="form-left">
               <div className="objective form-input">
-                <label htmlFor="objective">Objective {context.objectiveData[0].objectiveId}:</label>
+                <label htmlFor="objective">Objective {context.objectiveCount}:</label>
                 <input type="text" name="objective" id={context.objectiveData[0].objectiveId} size="90" />
               </div>
 
@@ -142,14 +155,14 @@ function ObjectiveComponent() {
                 <label htmlFor="startDate">Start Date:</label>
                 <span className="date-input">
                   <input type="date" name="startDate" id="startDate"
-                         defaultValue={defaultStartDate}
+                         defaultValue={context.objectiveData[0].defaultStartDate}
                   />
                 </span>
               </div>
 
               <div className="end-date form-input">
                 <label htmlFor="endDate">End Date:</label>
-                <span className="date-input"><input type="date" name="endDate" defaultValue={defaultEndDate}/></span>
+                <span className="date-input"><input type="date" name="endDate" defaultValue={context.objectiveData[0].defaultEndDate}/></span>
               </div>
           </div>
         </form>
